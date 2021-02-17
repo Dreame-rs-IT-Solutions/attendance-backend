@@ -21,7 +21,6 @@ class SectionAttendanceTest extends TestCase
 
         $this->actingAs($teacherUser, 'api')
         ->getJson(route('teacher.sections.attendances.index', ['section' => $section]) . '?date=' . $attendanceDate )
-        ->dump()
         ->assertStatus(200)
         ->assertJsonStructure([[
             'id', 'date', 'status'
