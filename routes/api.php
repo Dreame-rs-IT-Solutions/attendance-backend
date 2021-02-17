@@ -37,6 +37,13 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
             Route::group(['as' => 'admin.', 'prefix' => '/a'], function() {
                 Route::apiResource('teachers', 'TeacherController');
             });
+
+            /**
+             * Teacher Routes
+             */
+            Route::group(['as' => 'teacher.', 'prefix' => '/t'], function() {
+                Route::apiResource('sections', 'SectionController');
+            });
         });
     });
 });

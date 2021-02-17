@@ -4,31 +4,27 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Teacher extends Model
+class Section extends Model
 {
     /**
      * Fillable attributes
      */
     protected $fillable = [
-        'user_id', 'name'
+        'teacher_id', 'name'
     ];
 
     /**
      * Hidden attributes
      */
     protected $hidden = [
-        'user_id',
+        'teacher_id',
         'created_at', 'updated_at'
     ];
 
     /**
      * Model Relationship
      */
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-    public function sections() {
-        return $this->hasMany(Section::class);
+    public function teacher() {
+        return $this->belongsTo(Teacher::class);
     }
 }
