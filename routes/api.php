@@ -44,6 +44,7 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
             Route::group(['as' => 'teacher.', 'prefix' => '/t'], function() {
                 Route::apiResource('sections', 'SectionController');
                 Route::apiResource('sections.students', 'SectionStudentController');
+                Route::apiResource('students.attendances', 'StudentAttendanceController');
             });
         });
     });
