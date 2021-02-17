@@ -1,0 +1,20 @@
++--------+-----------+------------------------------------------------+-----------------------------------+-------------------------------------------------------+--------------------------------+
+| Domain | Method    | URI                                            | Name                              | Action                                                | Middleware                     |
++--------+-----------+------------------------------------------------+-----------------------------------+-------------------------------------------------------+--------------------------------+
+|        | GET|HEAD  | /                                              |                                   | Closure                                               | web                            |
+|        | GET|HEAD  | api/v1/a/teachers                              | admin.teachers.index              | App\Http\Controllers\TeacherController@index          | api,forceJsonResponse,auth:api |
+|        | POST      | api/v1/a/teachers                              | admin.teachers.store              | App\Http\Controllers\TeacherController@store          | api,forceJsonResponse,auth:api |
+|        | GET|HEAD  | api/v1/a/teachers/{teacher}                    | admin.teachers.show               | App\Http\Controllers\TeacherController@show           | api,forceJsonResponse,auth:api |
+|        | PUT|PATCH | api/v1/a/teachers/{teacher}                    | admin.teachers.update             | App\Http\Controllers\TeacherController@update         | api,forceJsonResponse,auth:api |
+|        | DELETE    | api/v1/a/teachers/{teacher}                    | admin.teachers.destroy            | App\Http\Controllers\TeacherController@destroy        | api,forceJsonResponse,auth:api |
+|        | GET|HEAD  | api/v1/t/sections                              | teacher.sections.index            | App\Http\Controllers\SectionController@index          | api,forceJsonResponse,auth:api |
+|        | POST      | api/v1/t/sections                              | teacher.sections.store            | App\Http\Controllers\SectionController@store          | api,forceJsonResponse,auth:api |
+|        | GET|HEAD  | api/v1/t/sections/{section}                    | teacher.sections.show             | App\Http\Controllers\SectionController@show           | api,forceJsonResponse,auth:api |
+|        | PUT|PATCH | api/v1/t/sections/{section}                    | teacher.sections.update           | App\Http\Controllers\SectionController@update         | api,forceJsonResponse,auth:api |
+|        | DELETE    | api/v1/t/sections/{section}                    | teacher.sections.destroy          | App\Http\Controllers\SectionController@destroy        | api,forceJsonResponse,auth:api |
+|        | GET|HEAD  | api/v1/t/sections/{section}/students           | teacher.sections.students.index   | App\Http\Controllers\SectionStudentController@index   | api,forceJsonResponse,auth:api |
+|        | POST      | api/v1/t/sections/{section}/students           | teacher.sections.students.store   | App\Http\Controllers\SectionStudentController@store   | api,forceJsonResponse,auth:api |
+|        | GET|HEAD  | api/v1/t/sections/{section}/students/{student} | teacher.sections.students.show    | App\Http\Controllers\SectionStudentController@show    | api,forceJsonResponse,auth:api |
+|        | PUT|PATCH | api/v1/t/sections/{section}/students/{student} | teacher.sections.students.update  | App\Http\Controllers\SectionStudentController@update  | api,forceJsonResponse,auth:api |
+|        | DELETE    | api/v1/t/sections/{section}/students/{student} | teacher.sections.students.destroy | App\Http\Controllers\SectionStudentController@destroy | api,forceJsonResponse,auth:api |
++--------+-----------+------------------------------------------------+-----------------------------------+-------------------------------------------------------+--------------------------------+
