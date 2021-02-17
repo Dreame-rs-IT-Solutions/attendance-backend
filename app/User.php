@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'username', 'password',
+        'role'
     ];
 
     /**
@@ -28,6 +29,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'created_at', 'updated_at'
     ];
 
     /**
@@ -37,5 +39,12 @@ class User extends Authenticatable
         if($value != null && $value != '') {
             $this->attributes['password'] = Hash::make($value);
         }
+    }
+
+    /**
+     * Model Relationships
+     */
+    public function profile() {
+        return $this->hasOne(Teacher::class);
     }
 }
