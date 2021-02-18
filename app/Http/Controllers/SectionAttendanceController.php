@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Http\Requests\SectionAttendance\SectionAttendanceIndexRequest;
+use App\Http\Requests\SectionAttendance\SectionAttendanceStoreRequest;
 use App\Http\Resources\AttendanceResource;
 use App\Section;
 use Illuminate\Http\Request;
@@ -30,5 +31,31 @@ class SectionAttendanceController extends Controller
         }
 
         return response(null);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  int  $section
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(SectionAttendanceStoreRequest $request, int $section)
+    {
+        $students = $request->validated()['students'];
+        $attendanceDate = $request->validated()['date'];
+
+        foreach($students as $student) {
+            $studentAttendanceData = [
+                'student_id' => $student['id'],
+                'status' => $student['status'],
+                'date' => $attendanceDate,
+            ];
+
+            Attendance::create($studentAttendanceData);
+        }
+
+        return response('Attendance Submitted');
     }
 }

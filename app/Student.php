@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
+    protected $appends = [
+        'absences_count', 'attendances_count'
+    ];
+
     /**
      * Fillable attributes
      */
@@ -20,6 +24,17 @@ class Student extends Model
         'section_id',
         'created_at', 'updated_at'
     ];
+
+    /**
+     * Model mutators and accessors
+     */
+    public function getAbsencesCountAttribute($value) {
+        return $this->attendances()->where('STATUS', 'ABSENT')->count();
+    }
+
+    public function getAttendancesCountAttribute($value) {
+        return $this->attendances()->where('STATUS', 'PRESENT')->count();
+    }
 
     /**
      * Model Relationship

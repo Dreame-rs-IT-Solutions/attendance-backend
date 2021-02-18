@@ -17,7 +17,7 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
 
     Route::group(['prefix' => 'v1'], function() {
 
-        // Route::post('/login', 'AuthController@login');
+        Route::post('/login', 'AuthController@login');
 
         // Route::get('/verification', 'VerificationController@verifyContactNumber');
         // Route::put('/forgot-password', 'VerificationController@sendCodeToContactNumber');
@@ -47,7 +47,7 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
                 Route::apiResource('sections.students', 'SectionStudentController');
 
                 Route::apiResource('sections.attendances', 'SectionAttendanceController')
-                    ->only(['index']);
+                    ->only(['index', 'store']);
 
                 Route::apiResource('students.attendances', 'StudentAttendanceController');
             });
