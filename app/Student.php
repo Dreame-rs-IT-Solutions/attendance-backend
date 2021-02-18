@@ -21,8 +21,17 @@ class Student extends Model
      * Hidden attributes
      */
     protected $hidden = [
-        'section_id',
-        'created_at', 'updated_at'
+        'section_id', 'updated_at'
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
     ];
 
     /**

@@ -33,6 +33,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+        'updated_at' => 'datetime:Y-m-d',
+    ];
+
+    /**
      * Automatically Hash password on create & update
      */
     public function setPasswordAttribute($value) {
