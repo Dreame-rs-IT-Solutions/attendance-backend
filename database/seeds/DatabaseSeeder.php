@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         //     });
         // });
 
-        $user = factory(\App\User::class)->craete(['username' => 'teacherone', 'role' => 'TEACHER']);
-        factory(\App\Teacher::class)->craete(['user_id' => $user->id, 'name' => 'teacherone']);
+        $user = factory(\App\User::class)->create(['username' => 'teacherone', 'role' => 'TEACHER']);
+        factory(\App\Teacher::class)->create(['user_id' => $user->id, 'name' => 'teacherone']);
 
-        $user = factory(\App\User::class)->craete(['username' => 'teachertwo', 'role' => 'TEACHER']);
-        factory(\App\Teacher::class)->craete(['user_id' => $user->id, 'name' => 'teachertwo']);
+        $user = factory(\App\User::class)->create(['username' => 'teachertwo', 'role' => 'TEACHER']);
+        factory(\App\Teacher::class)->create(['user_id' => $user->id, 'name' => 'teachertwo']);
 
-        $user = factory(\App\User::class)->craete(['username' => 'teacherthreee', 'role' => 'TEACHER']);
-        factory(\App\Teacher::class)->craete(['user_id' => $user->id, 'name' => 'teacherthreee']);
+        $user = factory(\App\User::class)->create(['username' => 'teacherthreee', 'role' => 'TEACHER']);
+        factory(\App\Teacher::class)->create(['user_id' => $user->id, 'name' => 'teacherthreee']);
     }
 }
