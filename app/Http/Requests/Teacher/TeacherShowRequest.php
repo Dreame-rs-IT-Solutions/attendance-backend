@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Teacher;
 
+use App\Teacher;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,16 @@ class TeacherShowRequest extends FormRequest
 
         if ($authorizedUser->role == 'ADMINISTRATOR')
             return true;
+
+        if ($authorizedUser->role == 'TEACHER') {
+            $teacher = $this->route('teacher');
+            $teacher = Teacher::findOrFail($teacher);
+
+            $authorizedTeacher = $authorizedUser->profile;
+
+            if ($teacher->id == $authorizedTeacher->id)
+                return true;
+        }
 
         return false;
     }

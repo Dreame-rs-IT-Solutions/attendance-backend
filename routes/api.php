@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Resources\TeacherResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +29,7 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
 
         Route::group(['middleware' => 'auth:api'], function() {
 
-            // Route::post('/logout', 'AuthController@logout');
+            Route::post('/logout', 'AuthController@logout');
 
             // Route::get('/user', function() { return request()->user(); });
             // Route::put('/user/change-password', 'UserController@changePassword');
@@ -42,6 +45,26 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
              * Teacher Routes
              */
             Route::group(['as' => 'teacher.', 'prefix' => '/t'], function() {
+                Route::get('/', function(Request $request) {
+                    $teacher = \App\Teacher::whereUserId(request()->user()->id)->first();
+                    return new TeacherResource($teacher);
+                });
+
+                Route::put('/', function(Request $request) {
+                    $validator = Validator::make($request->toArray(), [
+                        'username' => 'required|string',
+                        'name' => 'required|string',
+                    ]);
+
+                    $teacher = \App\Teacher::whereUserId(request()->user()->id)->first();
+                    $teacher->update($validator->validated());
+
+                    $teacherUser = \App\User::whereId($teacher->user_id)->first();
+                    $teacherUser->update($validator->validated());
+
+                    return new TeacherResource($teacher);
+                });
+
                 Route::apiResource('sections', 'SectionController');
 
                 Route::apiResource('sections.students', 'SectionStudentController');
