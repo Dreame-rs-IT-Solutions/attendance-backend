@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $user = factory(\App\User::class)->create(['username' => 'teachertwo', 'role' => 'TEACHER']);
         factory(\App\Teacher::class)->create(['user_id' => $user->id, 'name' => 'teachertwo']);
 
-        $user = factory(\App\User::class)->create(['username' => 'teacherthreee', 'role' => 'TEACHER']);
+        $user = factory(\App\User::class)->create(['username' => 'teacherthree', 'role' => 'TEACHER']);
         factory(\App\Teacher::class)->create(['user_id' => $user->id, 'name' => 'teacherthreee']);
     }
 }
