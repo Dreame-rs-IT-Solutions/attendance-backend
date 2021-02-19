@@ -25,6 +25,7 @@ class SectionAttendanceController extends Controller
                                 ->join('students', 'students.id', 'attendances.student_id')
                                 ->where('students.section_id', $section)
                                 ->where('attendances.date', $date)
+                                ->with('student')
                                 ->get();
 
             return AttendanceResource::collection($attendances);
