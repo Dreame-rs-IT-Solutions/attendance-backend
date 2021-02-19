@@ -38,11 +38,11 @@ class Student extends Model
      * Model mutators and accessors
      */
     public function getAbsencesCountAttribute($value) {
-        return $this->attendances()->where('STATUS', 'ABSENT')->count();
+        return $this->attendances()->where('status', 'ABSENT')->count();
     }
 
     public function getAttendancesCountAttribute($value) {
-        return $this->attendances()->where('STATUS', 'PRESENT')->count();
+        return $this->attendances()->where('status', 'PRESENT')->count();
     }
 
     /**
