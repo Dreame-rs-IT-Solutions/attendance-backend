@@ -20,6 +20,10 @@ Route::group(['middleware' => 'forceJsonResponse'], function () {
 
     Route::group(['prefix' => 'v1'], function() {
 
+        Route::get('/sample-connection', function() {
+            return 'Connection Successful';
+        });
+
         Route::post('/login', 'AuthController@login');
 
         // Route::get('/verification', 'VerificationController@verifyContactNumber');
