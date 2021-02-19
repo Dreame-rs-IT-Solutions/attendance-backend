@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Str;
 
+$HEROKU_DB_URL = parse_url("postgres://rpndsuxvslnmcy:0a486b07d8eb2a5867a15ce3d15e52a86082f2b79b3bb85809e75134048dd5f8@ec2-3-221-243-122.compute-1.amazonaws.com:5432/deja9tgfl4992n");
+
 return [
 
     /*
@@ -65,18 +67,32 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => $HEROKU_DB_URL['host'],
+            'port' => $HEROKU_DB_URL['port'],
+            'database' => ltrim($HEROKU_DB_URL['path'], '/'),
+            'username' => $HEROKU_DB_URL['user'],
+            'password' => $HEROKU_DB_URL['pass'],
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
+
+        // 'pgsql' => [
+        //     'driver' => 'pgsql',
+        //     'url' => env('DATABASE_URL'),
+        //     'host' => env('DB_HOST', '127.0.0.1'),
+        //     'port' => env('DB_PORT', '5432'),
+        //     'database' => env('DB_DATABASE', 'forge'),
+        //     'username' => env('DB_USERNAME', 'forge'),
+        //     'password' => env('DB_PASSWORD', ''),
+        //     'charset' => 'utf8',
+        //     'prefix' => '',
+        //     'prefix_indexes' => true,
+        //     'schema' => 'public',
+        //     'sslmode' => 'prefer',
+        // ],
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
