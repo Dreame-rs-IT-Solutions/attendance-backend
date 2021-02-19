@@ -6,7 +6,7 @@
 
 ### Installation
 
-PITSTOP requires Composer to run.
+Work Immersion Attendance requires Composer to run.
 
 Install project dependecies
 ```sh
